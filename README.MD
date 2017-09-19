@@ -22,10 +22,22 @@ and then from your Angular `AppModule`:
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+// Import ToastrModule
+import { ToastrModule, ToastrController } from 'ng2-toastr';
 
-// Import your library
-import { SampleModule } from 'ng2-toastr';
+@Component({
+  selector: 'app',
+  templateUrl: './index.component.html'
+})
+class AppComponent {
+  constructor(public toastCtrl: ToastrController) {
+    console.log(this.toastCtrl);
+  }
+
+  showToast() {
+    this.toastCtrl.show({ type: 'success', title: 'Success', message: 'Added Successfully !!!' });
+  }
+}
 
 @NgModule({
   declarations: [
@@ -33,9 +45,7 @@ import { SampleModule } from 'ng2-toastr';
   ],
   imports: [
     BrowserModule,
-
-    // Specify your library as an import
-    LibraryModule
+    ToastrModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -47,10 +57,7 @@ Once your library is imported, you can use its components, directives and pipes 
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-<sampleComponent></sampleComponent>
+<button type="button" (click)="showToast()">Open</button>
 ```
 
 ## Development
