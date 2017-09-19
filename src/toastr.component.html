@@ -1,0 +1,15 @@
+<div id="toast-container" class="toast-{{position}} animated {{showAnimationClass}}" aria-live="polite" role="alert" #toastr>
+  <div class="toast toast-just-text" [class.toast-success]="type == 'success'" 
+  [class.toast-info]="type == 'info'" 
+  [class.toast-error]="type == 'error'"
+  [class.toast-warning]="type == 'warning'"
+  [class.toast-loading]="type == 'loading'">
+      <div class="loader" *ngIf="type == 'loading'">
+          <svg class="circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+          </svg>          
+      </div>
+      <div class="toast-title">{{title}}</div>    
+      <div class="toast-message">{{message}}</div>
+  </div>
+</div>
